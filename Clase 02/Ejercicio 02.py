@@ -60,7 +60,7 @@ class Estudiante(Persona):
 
     # Setter para modificar la carrera con validación de opciones permitidas
     def set_carrera(self, nueva_carrera):
-        if nueva_carrera in Estudiante.CARRERAS_PERMITIDAS:
+        if nueva_carrera.capitalize() in Estudiante.CARRERAS_PERMITIDAS:
             self._carrera = nueva_carrera
         else:
             print(f"Error: Carrera no válida. Opciones: {Estudiante.CARRERAS_PERMITIDAS}")

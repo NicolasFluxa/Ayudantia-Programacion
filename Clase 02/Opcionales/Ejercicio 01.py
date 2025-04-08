@@ -33,12 +33,22 @@ class Animal:
         # Getter: retorna el nombre del animal
         return self._nombre
 
+    def get_especie(self):
+        # Getter: retorna el nombre del animal
+        return self._especie
+
     def set_nombre(self, nuevo_nombre):
         # Setter: valida que el nombre no sea vacío (usa strip() para limpiar espacios)
         if nuevo_nombre.strip() != "":
             self._nombre = nuevo_nombre.strip()
         else:
             print("Error: Nombre no puede estar vacío.")
+
+    def set_especie(self, nuevo_especie):
+        if nuevo_especie.strip() != "":
+            self._especie = nuevo_especie.strip()
+        else:
+            print("Error: Especie no puede estar vacío ")
 
 class AnimalTerrestre(Animal):
     def __init__(self, nombre, especie, patas):
@@ -64,6 +74,16 @@ class AnimalTerrestre(Animal):
 #    R: Error, ya que el método espera un número entero.
 
 # Ejemplo de uso:
-tigre = AnimalTerrestre("  Tigre  ", "Felino", 4)
-tigre.set_patas(-3)  # Error: Patas deben ser mayor a 0.
-print(tigre.get_nombre())  # "Tigre" (strip() elimina espacios)
+tigre = Animal("Tiburoncin", "tigure ")
+tigre2 = AnimalTerrestre("Tiburoncin", "tigre", 9)
+
+print(tigre2.get_patas())
+
+leon = Animal("Alex", "Leon")
+print("El nombre del leon es: ",leon.get_nombre())
+print("La especie es: ", leon.get_especie())
+
+leon = AnimalTerrestre("Alex", "Leon", 4)
+print("El nombre del leon es: ",leon.get_nombre())
+print("La especie es: ", leon.get_especie())
+print("La cantidad de patas es: ", leon.get_patas())

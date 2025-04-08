@@ -75,16 +75,6 @@ Para heredar e inicializar los atributos _marca y _modelo definidos en la clase 
 Se permitirían marcas con espacios al inicio/final (ej: " Toyota "), lo que generaría inconsistencia en los datos.
 """
 
-# Crear un coche
-mi_coche = Coche("Toyota", "Corolla")
-
-# Mostrar datos heredados
-print(f"Marca: {mi_coche.get_marca()}")         # Toyota
-print(f"Modelo: {mi_coche.get_modelo()}")       # Corolla
-
-# Actualizar kilometraje válido
-mi_coche.actualizar_kilometraje(150)
-print(f"Kilometraje: {mi_coche.get_kilometraje()} km")  # 150
-
-# Intentar kilómetros negativos (error)
-mi_coche.actualizar_kilometraje(-50)            # Error: Kilometraje no puede ser negativo.
+auto1 = Coche("Toyota","supra")
+auto1.actualizar_kilometraje(120)
+print(f"La marca del auto es: {auto1.get_marca()} y el modelo es: {auto1.get_modelo()} y va a {auto1.get_kilometraje()}Km/h")
