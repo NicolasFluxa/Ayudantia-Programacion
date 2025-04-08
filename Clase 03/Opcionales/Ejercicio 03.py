@@ -1,11 +1,10 @@
 
 """
-Demuestra cómo el duck typing permite aplicar el polimorfismo en
-Python sin necesidad de que las clases estén relacionadas por herencia.
-Crea dos clases,  y , que implementen el método , y una función que
-acepte un objeto cualquiera y llame a su método . Esto evidencia que,
-mientras el objeto tenga el método requerido, éste se puede utilizar
-de manera intercambiable.
+Demuestra cómo el duck typing permite aplicar el polimorfismo
+en Python sin necesidad de que las clases estén relacionadas
+por herencia. Crea dos clases, Pato y Avion, que implementen
+el método volar(), y una función que acepte un objeto cualquiera
+ y llame a su método volar().
 """
 
 # Definición de la clase 'Pato'

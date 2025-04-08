@@ -1,9 +1,10 @@
 
 """
-Crea una jerarquía de clases en la que  es la clase base que define el método .
- Luego, crea dos clases derivadas ( y ) que sobreescriben el método  para reflejar
- diferentes maneras de desplazamiento. Este ejercicio destaca la reutilización
- de una interfaz común mientras se implementan detalles específicos para cada tipo de vehículo
+Crea una jerarquía de clases en la que Vehiculo es la clase base que
+define el método moverse().
+Luego, crea dos clases derivadas (Coche y Bicicleta) que
+sobreescriben el método moverse() para reflejar diferentes maneras
+de desplazamiento.
 """
 
 # Definición de la clase base 'Vehiculo'

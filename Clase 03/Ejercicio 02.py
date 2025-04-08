@@ -1,8 +1,7 @@
 """
-Utilizando las clases definidas en el ejercicio anterior, crea una lista que contenga instancias de ,
-  y una instancia directa de . Itera sobre la lista e invoca el método  en cada objeto.
-   Este ejercicio refuerza cómo el polimorfismo permite utilizar una misma interfaz (en este caso, el método)
-   en objetos de diferentes tipos.
+Utilizando las clases definidas en el ejercicio anterior,
+ crea una lista que contenga instancias de Perro, Gato y una instancia directa de Animal.
+  Itera sobre la lista e invoca el método hacer_sonido() en cada objeto.
 """
 
 # Definición de la clase base 'Animal'

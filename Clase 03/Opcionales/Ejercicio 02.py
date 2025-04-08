@@ -1,10 +1,11 @@
 
 """
-Demuestra cómo el polimorfismo se aplica a los métodos especiales de
- Python mediante la sobreescritura del método . Crea una clase base
- con un formato básico al imprimir el objeto y una clase derivada
-  que agrega información adicional, como el departamento. Al imprimir los objetos,
-   se utilizará la versión sobreescrita de
+Demuestra cómo el polimorfismo se aplica a los métodos especiales
+de Python mediante la sobreescritura del método __str__.
+Crea una clase base Empleado con un formato básico al imprimir
+el objeto y una clase derivada Gerente que agrega información adicional,
+ como el departamento. Al imprimir los objetos, se utilizará la versión
+ sobreescrita de __str__.
 """
 
 # Definición de la clase base 'Empleado'

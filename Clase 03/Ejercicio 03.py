@@ -1,9 +1,9 @@
 
 """
-Crea una clase base llamada  con el método . Luego, define dos clases derivadas:
-y , donde cada una sobreescribe el método  para reflejar una forma distinta de
-"tocar" el instrumento. Este ejercicio ilustra la capacidad de personalizar el
- comportamiento de un mismo método mediante la herencia.
+Crea una clase base llamada "Intrumento" con el método "tocar()".
+Luego, define dos clases derivadas: "Guitarra y Piano", donde cada una sobreescribe el
+método "tocar()" para reflejar una forma distinta de
+"tocar" el instrumento.
 """
 
 # Definición de la clase base 'Instrumento'
@@ -40,7 +40,8 @@ La clase  implementa  devolviendo una cadena que describe la emisión de "acorde
 Pregunta 2:
 ¿Cómo ayuda este ejemplo a comprender el polimorfismo en Python?
 Respuesta:
-Ilustra que, al utilizar el mismo método () en distintas instancias, cada una ejecuta su propia versión, lo que permite que objetos diferentes se comporten de manera particular frente a la misma llamada de método.
+Ilustra que, al utilizar el mismo método () en distintas instancias, cada una ejecuta su propia versión,
+lo que permite que objetos diferentes se comporten de manera particular frente a la misma llamada de método.
 Pregunta 3:
 ¿Qué ventaja tiene tener un método común en la clase base para ser reutilizado y adaptado en diferentes subclases?
 Respuesta:

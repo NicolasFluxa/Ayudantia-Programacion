@@ -1,8 +1,8 @@
 
 """
-Crea una clase base llamada  con un método . Luego, define dos clases derivadas,  y ,
-que sobreescriban el método para devolver sonidos específicos. Este ejercicio muestra cómo
-diferentes clases pueden tener implementaciones distintas de un mismo método.
+Crea una clase base llamada Animal con un método hacer_sonido().
+Luego, define dos clases derivadas, Perro y Gato,
+que sobreescriban el método para devolver sonidos específicos.
 """
 
 # Definición de la clase base 'Animal'
