@@ -1,4 +1,18 @@
 
+"""
+Ejercicio 5: Calculadora Flexible con Sobrecarga de Métodos Simulada
+Enunciado:
+Crea una clase Calculadora que contenga un método llamado multiplicar()
+que sea capaz de recibir una cantidad variable de argumentos utilizando *args.
+
+Este método debe multiplicar todos los números recibidos como argumento.
+Si no se recibe ninguno, debe retornar 1 (la identidad multiplicativa).
+
+Este ejercicio simula la sobrecarga de métodos en Python (ya que no se puede
+hacer como en otros lenguajes como Java o C++), aprovechando el uso de *args.
+También refuerza el concepto de funciones flexibles y manejo de tuplas.
+"""
+
 class Calculadora:
     def multiplicar(self, *args):
         """

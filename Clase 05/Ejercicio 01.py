@@ -1,3 +1,17 @@
+"""
+Ejercicio 4: Sumar Duraciones de Películas con Sobrecarga de Operadores
+Enunciado:
+Implementa una clase Pelicula que tenga los atributos titulo y duracion (en minutos).
+Luego, sobrecarga el operador + (mediante el método __add__) para que puedas sumar
+dos películas y obtener como resultado un nuevo objeto Pelicula, cuyo título sea la
+concatenación de ambos títulos y su duración sea la suma de ambas.
+
+Además, sobrecarga el método __str__ para que cuando se imprima un objeto de tipo
+Pelicula, se muestre un mensaje legible con su título y duración.
+
+Este ejercicio tiene como objetivo aplicar la sobrecarga de operadores, crear
+objetos combinados y mejorar la representación textual de los objetos.
+"""
 
 class Pelicula:
     def __init__(self, titulo, duracion):

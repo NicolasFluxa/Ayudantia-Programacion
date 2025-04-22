@@ -1,4 +1,32 @@
 
+"""
+Ejercicio 3: Análisis de Calificaciones con Listas
+Enunciado:
+Crea un programa que utilice listas para almacenar calificaciones de estudiantes
+y realizar operaciones básicas sobre ellas.
+Debes seguir estos pasos:
+
+Inicializa una lista con varias calificaciones numéricas (enteros entre 0 y 100).
+
+Calcula y muestra:
+
+El promedio de las calificaciones.
+
+La calificación más alta.
+
+La calificación más baja.
+
+Agrega una nueva calificación a la lista.
+
+Elimina la primera calificación que esté por debajo de 60 (nota desaprobatoria).
+
+Ordena la lista en orden descendente (de mayor a menor).
+
+Este ejercicio tiene como propósito practicar el manejo de listas, uso de
+funciones como append, remove, sort, y recorrer listas usando ciclos.
+"""
+
+
 # Lista inicial de calificaciones
 calificaciones = [78, 92, 85, 67, 90, 55, 88]
 

@@ -1,4 +1,23 @@
 
+"""
+Ejercicio 6: Transporte Polimórfico con Duck Typing
+Enunciado:
+Define tres clases sin relación de herencia entre sí: Auto, Bicicleta y Avion.
+Cada clase debe tener dos métodos con el mismo nombre: moverse() y detenerse(),
+que deben mostrar un mensaje representativo del tipo de transporte.
+
+Luego, implementa una función llamada simular_transporte(transporte) que reciba
+cualquier objeto, verifique dinámicamente si tiene ambos métodos requeridos,
+y si los tiene, los ejecute. Si el objeto no cumple con esta "interfaz implícita",
+debe lanzar un error.
+
+Este ejercicio tiene como objetivo aplicar el principio de duck typing de Python,
+que permite tratar objetos por su comportamiento en lugar de su tipo explícito.
+También se introducen verificaciones con hasattr() para asegurar que los objetos
+cumplen con la interfaz esperada.
+"""
+
+
 class Auto:
     def moverse(self):
         print("El auto se desplaza por carretera.")
