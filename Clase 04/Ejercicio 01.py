@@ -25,11 +25,12 @@ class Lavadora(Electrodomestico):
 # Creación de instancias de electrodomésticos
 refrigerador = Refrigerador()
 lavadora = Lavadora()
+# electrodomestico = Electrodomestico()
 
 # Impresión del consumo de energía de cada electrodoméstico
 print(refrigerador.consumo_energia())  # "El refrigerador consume 150 kWh al mes."
 print(lavadora.consumo_energia())  # "La lavadora consume 250 kWh al mes."
-
+# print(electrodomestico.consumo_energia())
 """
 Pregunta 1: ¿Por qué Electrodomestico define consumo_energia() sin implementación?
 Respuesta: Porque actúa como una clase base abstracta, dejando que cada subclase 

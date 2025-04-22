@@ -1,55 +1,67 @@
+from abc import ABC, abstractmethod
+
+# Clase base abstracta que define la interfaz de Empleado
+class Empleado(ABC):
+    def __init__(self, nombre):
+        self.nombre = nombre  # Nombre del empleado
+
+    @abstractmethod
+    def calcular_sueldo(self):
+        """
+        Método abstracto: debe ser implementado por todas las subclases.
+        Retorna el sueldo calculado.
+        """
+        pass
+
+# Empleado con salario fijo mensual
+class EmpleadoFijo(Empleado):
+    def __init__(self, nombre, sueldo_base):
+        super().__init__(nombre)
+        self.sueldo_base = sueldo_base  # Sueldo mensual fijo
+
+    def calcular_sueldo(self):
+        # Simplemente retorna el sueldo base
+        return self.sueldo_base
+
+# Empleado que cobra por horas trabajadas
+class EmpleadoPorHoras(Empleado):
+    def __init__(self, nombre, horas_trabajadas, valor_por_hora):
+        super().__init__(nombre)
+        self.horas_trabajadas = horas_trabajadas  # Horas trabajadas en el período
+        self.valor_por_hora = valor_por_hora      # Pago por cada hora
+
+    def calcular_sueldo(self):
+        # Calcula sueldo según horas y añade un bono fijo de $50
+        return (self.horas_trabajadas * self.valor_por_hora) + 50
+
+# Instanciar empleados variados
+empleados = [
+    EmpleadoFijo("Ana", 1200),
+    EmpleadoPorHoras("Luis", 40, 15),
+    EmpleadoFijo("María", 1500),
+    EmpleadoPorHoras("Carlos", 30, 20)
+]
+
+# Mostrar el sueldo de cada empleado usando la misma interfaz
+for emp in empleados:
+    print(f"{emp.nombre}: ${emp.calcular_sueldo():.2f}")
+
+
 
 """
-Crea una clase base Figura con un método calcular_area(). Luego, define dos clases derivadas:
-Cuadrado y Circulo, que sobrescriban el método para calcular el área de cada figura.
-Este ejercicio mostrará cómo distintos objetos pueden compartir la
-misma interfaz pero con diferentes implementaciones.
-"""
-import math
+Preguntas y respuestas
 
+¿Qué pasaría si intentas instanciar directamente Empleado("Paco")?
 
-# Definición de la clase base 'Figura'
-class Figura:
-    def calcular_area(self):
-        # Método que será sobreescrito por las subclases
-        raise NotImplementedError("Este método debe ser implementado por una subclase")
+Se lanzaría un TypeError indicando que no se pueden instanciar clases con métodos abstractos sin implementar (calcular_sueldo).
 
+¿Por qué emp.calcular_sueldo() funciona igual para EmpleadoFijo y EmpleadoPorHoras?
 
-# Clase 'Cuadrado' que hereda de 'Figura'
-class Cuadrado(Figura):
-    def __init__(self, lado):
-        self.lado = lado  # Atributo que almacena el lado del cuadrado
+Porque gracias a la abstracción y el polimorfismo ambas subclases implementan la misma interfaz calcular_sueldo(), permitiendo al cliente no diferenciar el tipo concreto.
 
-    def calcular_area(self):
-        # Sobreescritura del método para calcular el área de un cuadrado
-        return self.lado ** 2
+¿Cómo modifica el código el bono fijo de $50 en EmpleadoPorHoras y por qué?
 
+Se añade + 50 al resultado de horas * valor por hora dentro de calcular_sueldo(). El bono fija asegura un ingreso mínimo.
 
-# Clase 'Circulo' que hereda de 'Figura'
-class Circulo(Figura):
-    def __init__(self, radio):
-        self.radio = radio  # Atributo que almacena el radio del círculo
-
-    def calcular_area(self):
-        # Sobreescritura del método para calcular el área de un círculo
-        return math.pi * (self.radio ** 2)
-
-
-# Creación de instancias de figuras
-cuadrado = Cuadrado(4)
-circulo = Circulo(3)
-
-# Impresión del área de cada figura
-print(f"Área del cuadrado: {cuadrado.calcular_area()}")  # 16
-print(f"Área del círculo: {circulo.calcular_area()}")  # 28.27...
 
 """
-Pregunta 1: ¿Por qué Figura tiene el método calcular_area() sin implementación?
-Respuesta: Porque es una clase base y solo define una interfaz común. 
-La implementación debe ser proporcionada por sus subclases.
-Pregunta 2: ¿Por qué las clases Cuadrado y Circulo sobrescriben el método calcular_area()?
-Respuesta: Para adaptar la funcionalidad a cada figura geométrica y calcular su área correctamente.
-Pregunta 3: ¿Qué sucede si intentamos crear una instancia de Figura y llamar calcular_area()?
-Respuesta: Se generará un error porque la clase base no proporciona una implementación válida del método.
-"""
-

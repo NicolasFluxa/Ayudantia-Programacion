@@ -1,19 +1,31 @@
-# Definición de la clase 'Persona'
-class Persona:
-    def __init__(self, nombre, edad):
-        self.nombre = nombre  # Atributo nombre
-        self.edad = edad      # Atributo edad
+"""
+Explicaciones adicionales
 
-    def __str__(self):
-        # Define la representación en cadena del objeto
-        return f"Persona: {self.nombre}, Edad: {self.edad}"
+Sobrecarga de operadores: __add__
 
-    def mostrar(self, nombre, edad):
-        print(f"Persona: {self.nombre}, Edad: {self.edad}")
+__add__ es un método especial invocado por el operador +.
 
-# Creación de una instancia de Persona
-persona = Persona("Nicolás", 25)
+Para retornar un nuevo objeto o valor al sumar instancias.
 
-# Imprimimos el objeto
-print(persona)  # Salida: Persona: Nicolás, Edad: 25
-persona.mostrar("nombre", "edad")
+Si no se soporta el tipo, debe devolver NotImplemented.
+
+Representación con __str__
+
+__str__ define cómo se muestra el objeto cuando se imprime con print().
+
+Facilita la lectura humana, evitando ver la referencia de memoria.
+
+Decoradores y abc en abstracción
+
+El módulo abc proporciona ABC (base de clases abstractas) y @abstractmethod.
+
+Una clase que hereda de ABC y contiene métodos @abstractmethod no puede instanciarse hasta que todas las subclases implementen dichos métodos.
+
+Ventajas:
+
+Define un contrato claro (interfaz).
+
+Obliga a las subclases a implementar los métodos esenciales.
+
+Refuerza el diseño orientado a objetos y el polimorfismo.
+"""

@@ -1,42 +1,46 @@
 
-"""
-Define una clase base Electrodomestico con un método descripcion().
-Luego, crea dos clases derivadas Licuadora y Microondas, donde cada una
-sobrescriba el método para mostrar una descripción específica del electrodoméstico.
-Este ejercicio demuestra cómo distintas clases pueden compartir la misma
-interfaz de método con diferentes implementaciones.
-"""
+class Pelicula:
+    def __init__(self, titulo, duracion):
+        self.titulo = titulo      # Nombre de la película
+        self.duracion = duracion  # Duración en minutos
 
+    def __add__(self, otra):
+        """
+        Sobrecarga del operador +.
+        Si la otra es Pelicula, retorna nueva Pelicula con títulos concatenados
+y suma de duraciones.
+        """
+        if not isinstance(otra, Pelicula):
+            return NotImplemented
+        nuevo_titulo = f"{self.titulo} + {otra.titulo}"
+        total_min = self.duracion + otra.duracion
+        return Pelicula(nuevo_titulo, total_min)
 
-# Definición de la clase base 'Electrodomestico'
-class Electrodomestico:
-    def descripcion(self):
-        raise NotImplementedError("Este método debe ser implementado en una subclase")
+    def __str__(self):
+        # Representación legible para print()
+        return f"{self.titulo}: {self.duracion} min"
 
-# Clase 'Licuadora' que hereda de 'Electrodomestico'
-class Licuadora(Electrodomestico):
-    def descripcion(self):
-        return "La licuadora mezcla y tritura alimentos."
-
-# Clase 'Microondas' que hereda de 'Electrodomestico'
-class Microondas(Electrodomestico):
-    def descripcion(self):
-        return "El microondas calienta y cocina alimentos rápidamente."
-
-# Creación de instancias de electrodomésticos
-licuadora = Licuadora()
-microondas = Microondas()
-
-# Impresión de la descripción de cada electrodoméstico
-print(licuadora.descripcion())  # "La licuadora mezcla y tritura alimentos."
-print(microondas.descripcion())  # "El microondas calienta y cocina alimentos rápidamente."
-
+# Ejemplo de uso
+p1 = Pelicula("Movie A", 120)
+p2 = Pelicula("Movie B", 90)
+p3 = p1 + p2           # Usa __add__
+print(p3)              # Usa __str__: "Movie A + Movie B: 210 min"
 
 """
-Pregunta 1: ¿Por qué la clase Electrodomestico tiene un método sin implementación?
-Respuesta: Para definir una interfaz común y garantizar que todas las subclases proporcionen su propia implementación.
-Pregunta 2: ¿Cómo demuestra este código el concepto de polimorfismo?
-Respuesta: Porque Licuadora y Microondas sobrescriben descripcion(), adaptándolo a sus propias funcionalidades.
-Pregunta 3: ¿Qué pasaría si intentamos crear una instancia de Electrodomestico?
-Respuesta: Se generaría un error porque la clase base no tiene una implementación concreta del método descripcion().
+Preguntas y respuestas
+
+¿Qué pasa al hacer p1 + 5?
+
+Como 5 no es Pelicula, __add__ devuelve NotImplemented, resultando en TypeError.
+
+¿Cómo modificar para que retorne sólo la suma de minutos (int)?
+
+def __add__(self, otra):
+    if isinstance(otra, Pelicula):
+        return self.duracion + otra.duracion
+    return NotImplemented
+
+¿Por qué definimos __str__()?
+
+Para mostrar información legible al imprimir el objeto; sin él, print(p1) mostraría su referencia de memoria.
 """
