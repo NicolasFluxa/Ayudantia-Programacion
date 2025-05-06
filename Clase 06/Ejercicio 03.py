@@ -1,50 +1,118 @@
 
 """
-Define una clase abstracta Empleado con un método calcular_bono().
-Luego, crea dos clases derivadas Gerente y Desarrollador, donde cada
-una sobrescriba el método según su política de bonos. Este ejercicio
-demuestra cómo estructurar un sistema de empleados con polimorfismo.
+Modela un sistema bancario con:
+
+Una clase base Cuenta que encapsule el titular y el saldo (privados), e implemente métodos depositar(monto), retirar(monto) y un getter get_balance().
+
+Dos subclases:
+
+CuentaAhorro (atributo extra: tasa de interés, método aplicar_interes())
+
+CuentaCorriente (atributo extra: límite de descubierto, sobreescribe retirar para permitir sobregiro)
+
+Sobrecarga de:
+
+__add__ para sumar saldos de dos cuentas (retorna un número).
+
+__gt__ para comparar balances (>).
+
+Manejo de una lista de cuentas para imprimir estados y compararlas.
 """
+from abc import ABC
 
-from abc import ABC, abstractmethod
+# 1. Clase base
+class Cuenta(ABC):
+    def __init__(self, titular, saldo_inicial=0):
+        self.__titular = titular
+        self.__balance = saldo_inicial
 
-# Definición de la clase abstracta 'Empleado'
-class Empleado(ABC):
-    def __init__(self, nombre, salario):
-        self.nombre = nombre
-        self.salario = salario
+    def depositar(self, monto):
+        if monto > 0:
+            self.__balance += monto
 
-    @abstractmethod
-    def calcular_bono(self):
-        pass
+    def retirar(self, monto):
+        # Retiro estándar: no permite saldo negativo
+        if 0 < monto <= self.__balance:
+            self.__balance -= monto
 
-# Clase 'Gerente' que hereda de 'Empleado'
-class Gerente(Empleado):
-    def calcular_bono(self):
-        return self.salario * 0.20  # 20% de bono
+    def get_balance(self):
+        return self.__balance
 
-# Clase 'Desarrollador' que hereda de 'Empleado'
-class Desarrollador(Empleado):
-    def calcular_bono(self):
-        return self.salario * 0.10  # 10% de bono
+    def __str__(self):
+        return f"{self.__titular}: ${self.__balance:.2f}"
 
-# Creación de instancias
-gerente = Gerente("Laura", 5000)
-desarrollador = Desarrollador("Carlos", 3500)
+    # Sobrecarga de +
+    def __add__(self, otra):
+        if isinstance(otra, Cuenta):
+            return self.__balance + otra.__balance
+        return NotImplemented
 
-# Impresión de los bonos
-print(f"Bono de {gerente.nombre}: ${gerente.calcular_bono()}")
-print(f"Bono de {desarrollador.nombre}: ${desarrollador.calcular_bono()}")
+    # Sobrecarga de >
+    def __gt__(self, otra):
+        if isinstance(otra, Cuenta):
+            return self.__balance > otra.__balance
+        return NotImplemented
+
+# 2a. Cuenta de ahorro
+class CuentaAhorro(Cuenta):
+    def __init__(self, titular, saldo_inicial, tasa_interes):
+        super().__init__(titular, saldo_inicial)
+        self.__tasa = tasa_interes
+
+    def aplicar_interes(self):
+        interes = self.get_balance() * self.__tasa
+        self.depositar(interes)
+
+# 2b. Cuenta corriente
+class CuentaCorriente(Cuenta):
+    def __init__(self, titular, saldo_inicial, limite_descubierto):
+        super().__init__(titular, saldo_inicial)
+        self.__limite = limite_descubierto
+
+    def retirar(self, monto):
+        # Permite sobregiro hasta el límite
+        if monto > 0 and monto <= self.get_balance() + self.__limite:
+            # Acceder al balance privado de la clase base
+            self._Cuenta__balance -= monto
+
+# --- Uso cotidiano ---
+if __name__ == "__main__":
+    c1 = CuentaAhorro("Ana", 1000, 0.02)
+    c2 = CuentaCorriente("Luis", 200, 500)
+
+    # Operaciones
+    c1.depositar(200)
+    c1.aplicar_interes()
+    c2.retirar(600)  # Usa sobregiro
+    c2.depositar(100)
+
+    cuentas = [c1, c2]
+    for c in cuentas:
+        print(c)
+
+    # Comparar y sumar
+    print("¿Ana tiene más que Luis?", c1 > c2)
+    print("Total fondos banco:", c1 + c2)
 
 
 """
-Pregunta 1: ¿Por qué Empleado es una clase abstracta en este caso?
-Respuesta: Para definir una estructura común y forzar la implementación
-de calcular_bono() en todas las clases derivadas.
-Pregunta 2: ¿Cómo refleja este ejercicio el concepto de polimorfismo?
-Respuesta: Aunque Gerente y Desarrollador tienen la misma interfaz,
-cada uno implementa calcular_bono() de manera diferente.
-Pregunta 3: ¿Cómo podríamos agregar más roles de empleados sin modificar la clase Empleado?
-Respuesta: Creando nuevas clases que hereden de Empleado y sobrescriban
-calcular_bono() con su propia lógica.
+¿De qué manera se logra el encapsulamiento del saldo, y por qué se accede a self._Cuenta__balance en CuentaCorriente?
+
+El atributo __balance es privado en la clase Cuenta, inaccesible directamente fuera de ella.
+
+Python lo “manglea” a _Cuenta__balance, así que para modificarlo en la subclase (CuentaCorriente) debe usarse esa forma, garantizando que nadie sobrescriba el saldo sin pasar por los métodos adecuados.
+
+Explique cómo CuentaAhorro y CuentaCorriente usan el mismo método retirar de forma diferente (polimorfismo).
+
+CuentaAhorro conserva el comportamiento base (no permite saldo negativo).
+
+CuentaCorriente sobrescribe retirar para permitir sobregiros hasta un límite, cambiando la lógica interna.
+
+Ambas responden a la misma llamada cuenta.retirar(monto), pero con implementaciones distintas.
+
+¿Qué devuelven las sobrecargas __add__ y __gt__ cuando se usan c1 + c2 y c1 > c2?
+
+c1 + c2 devuelve la suma numérica de ambos saldos (float o int).
+
+c1 > c2 devuelve un booleano indicando si el balance de c1 es mayor que el de c2.
 """

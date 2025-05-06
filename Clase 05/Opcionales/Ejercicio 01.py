@@ -17,6 +17,7 @@ Llena una lista con instancias de ambas clases y recorre dicha lista llamando al
 método calcular_sueldo() para mostrar el sueldo de cada empleado, sin necesidad de diferenciar entre tipos concretos.
 Esto permitirá observar cómo el polimorfismo funciona al usar una misma interfaz para distintos tipos de empleados.
 """
+from abc import ABC, abstractmethod
 
 # Clase base abstracta que define la interfaz de Empleado
 class Empleado(ABC):
