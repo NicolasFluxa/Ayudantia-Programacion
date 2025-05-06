@@ -14,6 +14,7 @@ cualquier instancia de Operacion y llame a su método ejecutar.
 
 """
 
+
 from abc import ABC, abstractmethod
 
 # Clase base abstracta
